@@ -1,0 +1,60 @@
+{% extends "drf_spectacular/swagger_ui.html" %}
+{% comment %}
+  Swagger UI with Nirbhoy branding: a green header bar with the logo and
+  brand colours on the main buttons. Everything else is standard Swagger UI.
+  HTTP method colours (GET blue, POST green, PATCH teal) are left as they are
+  because developers rely on them.
+{% endcomment %}
+
+{% block head %}
+{{ block.super }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wdth,wght@100..125,600..800&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --green: #006a4e; --green-deep: #00402f; --green-tint: #e3efe9; --red: #f42a41; --paper: #f4f7f5; }
+  body { background: var(--paper); }
+  .nb-bar { background: var(--green-deep); color: #fff; }
+  .nb-bar-inner { max-width: 1460px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .nb-brand { display: flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; }
+  .nb-brand img { width: 38px; height: 38px; }
+  .nb-name { display: flex; flex-direction: column; line-height: 1.05; }
+  .nb-bn { font-family: 'Anek Bangla', sans-serif; font-weight: 700; font-size: 22px; }
+  .nb-en { font-family: 'Hind Siliguri', sans-serif; font-size: 13px; opacity: .8; }
+  .nb-links { display: flex; gap: 6px; font-family: 'Hind Siliguri', sans-serif; }
+  .nb-links a { color: #dcebe4; text-decoration: none; padding: 6px 10px; border-radius: 6px; font-size: 15px; }
+  .nb-links a:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .swagger-ui, .swagger-ui .info .title, .swagger-ui .opblock-tag { font-family: 'Hind Siliguri', sans-serif; }
+  .swagger-ui .info .title { font-family: 'Anek Bangla', sans-serif; color: var(--green-deep); font-size: 40px; }
+  .swagger-ui .info .title small { background: var(--green); }
+  .swagger-ui .info .title small.version-stamp { background: var(--green); }
+  .swagger-ui .info .markdown h3 { color: var(--green-deep); font-family: 'Anek Bangla', sans-serif; font-size: 20px; }
+  .swagger-ui .info a, .swagger-ui .info .link { color: var(--green); }
+  .swagger-ui .scheme-container { background: #fff; box-shadow: none; border-top: 3px solid var(--green); }
+  .swagger-ui .btn.authorize { color: var(--green); border-color: var(--green); }
+  .swagger-ui .btn.authorize svg { fill: var(--green); }
+  .swagger-ui .btn.execute { background: var(--green); border-color: var(--green); }
+  .swagger-ui .opblock-tag { color: var(--green-deep); font-size: 22px; border-bottom-color: #c9dbd2; }
+  .swagger-ui .opblock-tag small { font-size: 15px; color: #5e6b65; }
+  .swagger-ui .wrapper { max-width: 1460px; }
+  .swagger-ui .markdown code, .swagger-ui .renderedMarkdown code { color: var(--green-deep); background: var(--green-tint); }
+</style>
+{% endblock head %}
+
+{% block body %}
+<header class="nb-bar">
+  <div class="nb-bar-inner">
+    <a class="nb-brand" href="/api/docs/">
+      <img src="/static/nirbhoy/logo.svg" alt="">
+      <span class="nb-name"><span class="nb-bn">নির্ভয়</span><span class="nb-en">Nirbhoy API</span></span>
+    </a>
+    <nav class="nb-links">
+      <a href="/api/docs/">Swagger</a>
+      <a href="/api/scalar/">Scalar</a>
+      <a href="/api/schema/">OpenAPI schema</a>
+      <a href="/admin/">Admin</a>
+    </nav>
+  </div>
+</header>
+{{ block.super }}
+{% endblock body %}
