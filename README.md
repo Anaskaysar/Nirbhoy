@@ -154,7 +154,7 @@ In Swagger: call `POST /api/auth/login/`, copy the token, click **Authorize** an
 
 ## Configuration
 
-Local development needs no configuration. For production, set the variables in [`backend/.env.example`](backend/.env.example): `DJANGO_SECRET_KEY`, `DJANGO_DEBUG=false`, `DJANGO_ALLOWED_HOSTS`, `FIELD_ENCRYPTION_KEY` and `RECEIPT_HASH_KEY`.
+Local development needs no configuration. For production, set the variables in [`backend/.env.example`](backend/.env.example): `DJANGO_SECRET_KEY`, `DJANGO_DEBUG=false`, `DJANGO_ALLOWED_HOSTS`, `FIELD_ENCRYPTION_KEY` and `RECEIPT_HASH_KEY`. Optionally, `DJANGO_ADMIN_USERNAME` and `DJANGO_ADMIN_PASSWORD` make `seed_demo` create a superuser for `/admin/` on each start.
 
 ## Deploy (Render, free plan)
 

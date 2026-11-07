@@ -4,9 +4,14 @@ python manage.py seed_demo
 Creates the demo reviewer account and a handful of realistic sample reports
 in different states, so the API has something to show straight away.
 Safe to run more than once.
+
+If DJANGO_ADMIN_USERNAME and DJANGO_ADMIN_PASSWORD are set (for example on the
+hosting server), it also creates or updates a superuser for the Django admin.
+The password comes only from the environment, never from the code.
 """
 
 import datetime
+import os
 
 from django.contrib.auth.models import Group, User
 from django.core.management.base import BaseCommand
@@ -90,6 +95,16 @@ class Command(BaseCommand):
             user.save()
         user.groups.add(group)
         self.stdout.write(f"Reviewer account: {DEMO_USER} / {DEMO_PASSWORD}")
+
+        admin_name = os.environ.get("DJANGO_ADMIN_USERNAME")
+        admin_password = os.environ.get("DJANGO_ADMIN_PASSWORD")
+        if admin_name and admin_password:
+            admin, _ = User.objects.get_or_create(username=admin_name)
+            admin.is_staff = True
+            admin.is_superuser = True
+            admin.set_password(admin_password)
+            admin.save()
+            self.stdout.write(f"Admin account ready: {admin_name}")
 
         if Report.objects.exists():
             self.stdout.write("Sample reports already exist, skipping.")
