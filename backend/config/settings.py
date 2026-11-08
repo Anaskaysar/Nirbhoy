@@ -116,7 +116,7 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 20 * 1024 * 1024
 # ---------------------------------------------------------------------------
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": ["rest_framework.authentication.TokenAuthentication"],
+    "DEFAULT_AUTHENTICATION_CLASSES": ["reports.authentication.FlexibleTokenAuthentication"],
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny"],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
@@ -142,7 +142,7 @@ SPECTACULAR_SETTINGS = {
         "1. **Submit** a report with `POST /api/reports/`. Copy the `receipt_code` it returns.\n"
         "2. **Track** it with `GET /api/reports/track/{receipt_code}/`.\n"
         "3. **Log in** as a reviewer with `POST /api/auth/login/` "
-        "(demo: `reviewer` / `review-demo-2026`). Click **Authorize** and enter `Token <your token>`.\n"
+        "(demo: `reviewer` / `review-demo-2026`). Click **Authorize** and paste the token (the `Token ` prefix is optional).\n"
         "4. **Review**: list with `GET /api/review/reports/`, then verify or reject with "
         "`PATCH /api/review/reports/{id}/`.\n"
         "5. **See it public** with `GET /api/public/reports/` and `GET /api/public/stats/`.\n\n"

@@ -162,7 +162,7 @@ class LoginView(APIView):
     @extend_schema(
         tags=["Auth"],
         summary="Reviewer login",
-        description="Demo account: `reviewer` / `review-demo-2026`. Use the token as `Token <token>` in **Authorize**.",
+        description="Demo account: `reviewer` / `review-demo-2026`. Paste the returned token into **Authorize** (the `Token ` prefix is optional).",
         request=LoginSerializer,
         responses={
             200: LoginResponseSerializer,

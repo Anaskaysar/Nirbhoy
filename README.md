@@ -150,7 +150,7 @@ The 53 tests are grouped by feature in `backend/reports/tests/` and tagged with 
 |---|---|---|
 | Reviewer | `reviewer` | `review-demo-2026` |
 
-In Swagger: call `POST /api/auth/login/`, copy the token, click **Authorize** and enter `Token <your token>`.
+In Swagger: call `POST /api/auth/login/`, copy the token, click **Authorize** and paste the token (the `Token ` prefix is optional).
 
 ## Configuration
 

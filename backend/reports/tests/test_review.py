@@ -24,6 +24,16 @@ class ReviewAccessTests(BaseAPITest):
         self.client.credentials(HTTP_AUTHORIZATION="Token not-a-real-token")
         self.assertErrorShape(self.client.get("/api/review/reports/"), 401, "authentication_failed")
 
+    def test_token_works_with_or_without_prefix(self):  # FR-3.1
+        self.client.credentials(HTTP_AUTHORIZATION=f"Token {self.reviewer_token}")
+        self.assertEqual(self.client.get("/api/review/reports/").status_code, 200)
+        self.client.credentials(HTTP_AUTHORIZATION=self.reviewer_token)
+        self.assertEqual(self.client.get("/api/review/reports/").status_code, 200)
+
+    def test_bare_wrong_token_returns_401(self):  # NFR-8
+        self.client.credentials(HTTP_AUTHORIZATION="not-a-real-token")
+        self.assertErrorShape(self.client.get("/api/review/reports/"), 401, "authentication_failed")
+
     def test_non_reviewer_returns_403(self):  # NFR-8
         self.as_outsider()
         self.assertErrorShape(self.client.get("/api/review/reports/"), 403, "permission_denied")
